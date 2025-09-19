@@ -1,58 +1,84 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const TravelApp());
 }
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+
+class TravelApp extends StatelessWidget {
+  const TravelApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Exp1 app',
+      // Changed the app title
+      title: 'Travel Destination Explorer',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Simple Application', style: TextStyle(color: Colors.white),),
-          backgroundColor: Colors.lightGreen,),
-        body: Container(
-          padding: EdgeInsets.all(16),
-          child: Column(
-          children: [
-            Text('welcome'),
-            SizedBox(height: 10,),
-            Icon(Icons.call),
-            SizedBox(height: 10,),
-            Icon(Icons.person),
-            SizedBox(height: 10,),
-            ElevatedButton(
-               onPressed: (){}, 
-               style:ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple,
-                foregroundColor: Colors.white,
-                ), 
-                child: Text('Click here')
-              ),
-          SizedBox(height: 10,),
+          // Updated AppBar title and color
+          title: Text('Travel Destination Explorer', style: TextStyle(color: Colors.white)),
+          backgroundColor: Colors.blueAccent, // A color that suits a travel theme
+        ),
+        body: SingleChildScrollView( // Added to prevent overflow if content grows
+          child: Container(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // More engaging welcome text
+                Text('Explore Your Next Adventure!', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                SizedBox(height: 20),
+               
+                // Travel-related icons
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(Icons.flight_takeoff, color: Colors.blueAccent, size: 30),
+                    Icon(Icons.beach_access, color: Colors.orangeAccent, size: 30),
+                    Icon(Icons.location_city, color: Colors.green, size: 30),
+                  ],
+                ),
+                SizedBox(height: 20),
+               
+                // Updated TextField for searching destinations
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Enter a destination...',
+                    prefixIcon: Icon(Icons.search),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
 
-          TextField(
-            decoration: InputDecoration(
-              hintText: 'Type here...',
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12)
-              )
+                // Updated button text and style
+                ElevatedButton.icon(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blueAccent,
+                    foregroundColor: Colors.white,
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                    textStyle: TextStyle(fontSize: 16)
+                  ),
+                  icon: Icon(Icons.explore),
+                  label: Text('Search Destinations'),
+                ),
+                SizedBox(height: 20),
+               
+                // A more relevant image for a travel app
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12.0),
+                  child: Image.network(
+                    'https://images.unsplash.com/photo-1503220317375-aaad61436b1b?q=80&w=2070&auto=format&fit=crop',
+                    width: 400,
+                    height: 250,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ],
             ),
           ),
-          SizedBox(height: 10,),
-          Image.network('https://kenkoimagingusa.com/cdn/shop/articles/Simple_Landscape_Photography_Tips_With_Tons_of_Impact_79f3d1b6-addd-4420-a887-f1cc50292373.jpg' ,width:400, height: 250,),
-          SizedBox(height: 10,),
-          Container(
-            height: 100,
-            color: Colors.yellow,
-          )
-          ],
-          ),
-        )
+        ),
       ),
     );
   }
